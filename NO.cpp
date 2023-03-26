@@ -28,6 +28,18 @@ NO::PONT NO::CriaNovoNO(TIPOCHAVE tipochave) {
     return novoNO;
 }
 
+NO::PONT NO::FindValue(TIPOCHAVE tipochave, PONT raiz) {
+    if(raiz == nullptr){
+        return nullptr;
+    }else if(raiz->chave == tipochave){
+        return raiz;
+    }else if(raiz->chave > tipochave){
+        return FindValue(tipochave, raiz->esq);
+    }else{
+        return FindValue(tipochave, raiz->dir);
+    }
+}
+
 void NO::PrintTree(PONT raiz) {
     if(raiz != nullptr){
         cout << raiz->chave << "(";

@@ -16,6 +16,7 @@ struct NO {
     static PONT Inicializa();
     static PONT Adiciona(PONT raiz, PONT no);
     static PONT CriaNovoNO(TIPOCHAVE tipochave);
+    static PONT FindValue(TIPOCHAVE tipochave, PONT raiz);
     static void PrintTree(PONT raiz);
 };
 
