@@ -18,6 +18,8 @@ struct NO {
     static PONT CriaNovoNO(TIPOCHAVE tipochave);
     static PONT FindValue(TIPOCHAVE tipochave, PONT raiz);
     static void PrintTree(PONT raiz);
+    static PONT BuscaNO(PONT raiz, TIPOCHAVE tipochave, PONT *pai);
+    static PONT RemoveNO(PONT raiz, TIPOCHAVE tipochave);
 };
 
 

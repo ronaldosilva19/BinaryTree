@@ -40,6 +40,59 @@ NO::PONT NO::FindValue(TIPOCHAVE tipochave, PONT raiz) {
     }
 }
 
+NO::PONT NO::BuscaNO(PONT raiz, TIPOCHAVE tipochave, PONT *pai) {
+    PONT atual = raiz;
+    *pai = nullptr;
+    while(atual){
+        if(atual->chave == tipochave){
+            return atual;
+        }
+        *pai = atual;
+        if(tipochave < atual->chave){
+            atual = atual->esq;
+        }else{
+            atual = atual->dir;
+        }
+    }
+    return nullptr;
+}
+
+NO::PONT NO::RemoveNO(PONT raiz, TIPOCHAVE tipochave) {
+    PONT pai, no, p, q;
+    no = BuscaNO(raiz, tipochave, &pai);
+    if(no == nullptr){
+        return raiz;
+    }else if(!no->esq || !no->dir){
+        if(!no->esq){
+            q = no->dir;
+        }else{
+            q = no->esq;
+        }
+    }else{
+        p = no;
+        q = no->esq;
+        while(q->dir){
+            p = q;
+            q = q->dir;
+        }
+        if(p != no){
+            p->dir = q->esq;
+            q->esq = no->esq;
+        }
+        q->dir = no->dir;
+    }
+    if(!pai){
+        delete no;
+        return q;
+    }
+    if(tipochave < pai->chave){
+        pai->esq = q;
+    }else{
+        pai->dir = q;
+    }
+    delete no;
+    return raiz;
+}
 void NO::PrintTree(PONT raiz) {
     if(raiz != nullptr){
         cout << raiz->chave << "(";

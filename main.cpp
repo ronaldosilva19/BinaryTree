@@ -16,8 +16,14 @@ int main() {
     NO::PONT pont = NO::FindValue(value, r);
     if(pont != nullptr){
         cout << "\nAchou o elemento " << pont->chave << " procurado.\n";
+        NO::PONT remove = NO::RemoveNO(r, pont->chave);
+        if(remove != nullptr){
+            cout << "Elemento " << value << " removido\n";
+        }
     }else{
         cout << "\nElemento " << value << " nao encontrado!\n";
     }
+    cout << "Depois da remocao:\n";
+    NO::PrintTree(r);
     return 0;
 }
